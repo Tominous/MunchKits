@@ -198,11 +198,11 @@ on join:
     if {munchkits.user.%uuid of player%.duelitem} is set:
       set slot 7 of player's inventory to diamond sword named "&a1v1 Arena"
 
-# Player Stats
+# Player Statistics
 command /stats [<player>]:
   trigger:
     if arg 1 is not set:
-      send "&7Your current stats:"
+      send "&7Your current statistics:"
       send "&aBalance: %{balance::%uuid of player%}%"
       send "&7------------------------"
       send "&aKills: %{kills::%uuid of player%}%"
@@ -581,7 +581,7 @@ on load:
       send "{@prefix} &7Reloaded." to {munchkits.main.reload}
     delete {munchkits.main.reload}
 
-# Clears Drops // Modifys stats
+# Clears Drops // Modifys statistics
 on drop:
   if event-item is not bowl:
     cancel event
@@ -654,7 +654,7 @@ command /admin [<text>]:
       # Help Menu for staff
       send "&8--------------[ &aMunchKits Staff &aHelp &7(1/1) &8]--------------"
       send "&7/Admin &8| &cShows this help menu."
-      send "&7/Admin mode &8| &cPuts you in admin mode."
+      send "&7/Admin mode &8| &cPuts you in administrator mode."
       send "&7/Admin reports &8| &cToggles reports on / off."
       send "&7/Admin cs &8| &cToggles CommandSpy on / off."
       send "&7/Admin ss &8| &cToggles SocialSpy on / off."
@@ -793,11 +793,11 @@ command /fly [<player>]:
     if {munchkits.user.%uuid of player%.fly} is not set:
       set {munchkits.user.%uuid of player%.fly} to true
       set player's fly mode to true
-      send "{@prefix} &7Flight mode &aEnabled"
+      send "{@prefix} &7Flight Mode &aEnabled"
     else:
       delete {munchkits.user.%uuid of player%.fly}
       set player's fly mode to false
-      send "{@prefix} &7Flight mode &cDisabled"
+      send "{@prefix} &7Flight Mode &cDisabled"
 
 # Flight Disable on quit
 on quit:
@@ -815,7 +815,7 @@ on gamemode change to creative:
   if {munchkits.user.%uuid of player%.staff} is set:
     make player execute command "/munchscore refresh"
 
-# Player Info - Shows info of player. - Eg: Currently banned?, Playtime ## NOT FINISHED
+# Player Information - Shows information of player. - Eg: Currently banned?, Playtime ## NOT FINISHED
 command /info [<player>]:
   permission: munchkits.admin.info
   permission message: {@noperm}
@@ -823,7 +823,7 @@ command /info [<player>]:
     if arg 1 is not set:
       send "{@prefix} &7ERROR: You need to specify a player."
       stop
-    open chest with 3 rows named "&c%arg 1%&7's info." to player
+    open chest with 3 rows named "&c%arg 1%&7's information." to player
     if {munchykits.punishments.ban.%uuid of arg 1%} is not set:
       format slot 10 of player with red dye named "Currently banned?" with lore "&aNo." to be unstealable
     else:
@@ -905,7 +905,7 @@ command /gamemode [<text>] [<player>]:
         set player's gamemode to survival
         send "{@prefix} &7Set &c%player%&7's gamemode to &cSurvival&7."
 
-# # Stats Management
+# # Statistics Management
 # Useful for higher staff on reset.
 
 command /astats [<text>] [<player>]:
@@ -913,18 +913,18 @@ command /astats [<text>] [<player>]:
   permission message: {@noperm}
   trigger:
     if arg 1 is not set:
-      send "&8---------------[ &aMunchKits Stats&8 &aHelp &7(1/1) &8]---------------"
-      send "&7/astats reset (player) &8| &cResets a players stats."
-      send "&7/astats resetall &8| &cResets all stats"
+      send "&8---------------[ &aMunchKits Statistics&8 &aHelp &7(1/1) &8]---------------"
+      send "&7/astats reset (player) &8| &cResets a players statistics."
+      send "&7/astats resetall &8| &cResets all statistics"
     else if arg 1 is "reset":
       if arg 2 is not set:
         send "{@prefix} &7No player specified!"
       else:
-        send "{@prefix} &7Reset &c%arg 2%&7's stats successfully."
+        send "{@prefix} &7Reset &c%arg 2%&7's statistics successfully."
         set {deaths::%uuid of arg 2%} to 0
         set {kills::%uuid of arg 2%} to 0
     else if arg 1 is "resetall":
-      send "{@prefix} &7Reset everyones stats successfully."
+      send "{@prefix} &7Reset everyones statistics successfully."
       set {deaths::*} to 0
       set {kills::*} to 0
 
